@@ -1,0 +1,10 @@
+<nav>
+  <ul>
+    <li *ngIf="!auth.isAuthenticated()">
+      <a href="#" (click)="auth.login()">Sign in</a>
+    </li>
+    <li *ngIf="auth.isAuthenticated()">
+      <a href="#" (click)="auth.logout()">Sign out</a>
+    </li>
+  </ul>
+</nav>
