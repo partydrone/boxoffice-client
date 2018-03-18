@@ -10,8 +10,9 @@ export class AuthService {
     responseType: 'token id_token',
     audience: 'https://boxoffice.auth0.com/userinfo',
     redirectUri: 'http://localhost:4200/callback',
-    scope: 'openid'
+    scope: 'openid profile'
   });
+  userProfile: any;
 
   constructor(public router: Router) { }
 
@@ -43,6 +44,21 @@ export class AuthService {
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
     this.router.navigate(['/']);
+  }
+
+  public getProfile(callback): void {
+    const accessToken = localStorage.getItem('access_token');
+    if (!accessToken) {
+      throw new Error('Access Token must exist to fetch profile');
+    }
+
+    const self = this;
+    this.auth0.client.userInfo(accessToken, (err, profile) => {
+      if (profile) {
+        self.userProfile = profile;
+      }
+      callback(err, profile);
+    });
   }
 
   private setSession(authResult): void {
