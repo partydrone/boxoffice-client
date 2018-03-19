@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { AuthService } from '../auth.service';
 
@@ -10,7 +11,7 @@ import { AuthService } from '../auth.service';
 export class ProfileComponent implements OnInit {
   profile: any;
 
-  constructor(public auth: AuthService) { }
+  constructor(public auth: AuthService, public title: Title) { }
 
   ngOnInit() {
     if (this.auth.userProfile) {
@@ -20,6 +21,8 @@ export class ProfileComponent implements OnInit {
         this.profile = profile;
       });
     }
+
+    this.title.setTitle('Box Office | Profile');
   }
 
 }
