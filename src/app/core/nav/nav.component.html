@@ -1,13 +1,22 @@
 <nav>
   <ul>
+    <li *ngIf="auth.isAuthenticated()">
+      <a routerLink="/contests">Contests</a>
+    </li>
     <li *ngIf="!auth.isAuthenticated()">
-      <a href="#" (click)="auth.login()">Sign in</a>
+      <a href="#" (click)="auth.login()">
+        <i class="fal fa-sign-in-alt"></i>
+      </a>
     </li>
     <li *ngIf="auth.isAuthenticated()">
-      <a routerLink="/profile">Profile</a>
+      <a routerLink="/profile">
+        <i class="fal fa-user-circle"></i>
+      </a>
     </li>
     <li *ngIf="auth.isAuthenticated()">
-      <a href="#" (click)="auth.logout()">Sign out</a>
+      <a href="#" (click)="auth.logout()">
+        <i class="fal fa-sign-out-alt"></i>
+      </a>
     </li>
   </ul>
 </nav>
