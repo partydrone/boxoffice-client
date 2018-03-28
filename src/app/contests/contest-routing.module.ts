@@ -6,10 +6,8 @@ import { ContestDetailComponent } from './contest-detail/contest-detail.componen
 import { ContestResolver } from './contest-resolver.service';
 
 const routes: Routes = [
-  { path: 'contests', children: [
-    { path: '', component: ContestListComponent },
-    { path: ':id', component: ContestDetailComponent, resolve: { contest: ContestResolver } }
-  ] }
+  { path: '', component: ContestListComponent },
+  { path: ':id', component: ContestDetailComponent, resolve: { contest: ContestResolver } }
 ];
 
 @NgModule({
