@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { ContestResolverService } from './contest-resolver.service';
+import { ContestResolver } from './contest-resolver.service';
 
 describe('ContestResolverService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ContestResolverService]
+      providers: [ContestResolver]
     });
   });
 
-  it('should be created', inject([ContestResolverService], (service: ContestResolverService) => {
+  it('should be created', inject([ContestResolver], (service: ContestResolver) => {
     expect(service).toBeTruthy();
   }));
 });

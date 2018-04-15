@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { Contest } from '../contest';
 
 @Component({
   selector: 'bo-contest-detail',
@@ -6,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contest-detail.component.scss']
 })
 export class ContestDetailComponent implements OnInit {
+  contest: Contest;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.contest = this.route.snapshot.data['contest'];
   }
 
 }
