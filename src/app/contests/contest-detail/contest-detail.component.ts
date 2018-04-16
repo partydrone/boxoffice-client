@@ -4,9 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { Contest } from '../contest';
 
 @Component({
-  selector: 'bo-contest-detail',
+  selector:    'bo-contest-detail',
   templateUrl: './contest-detail.component.html',
-  styleUrls: ['./contest-detail.component.scss']
+  styleUrls:   ['./contest-detail.component.scss']
 })
 export class ContestDetailComponent implements OnInit {
   contest: Contest;
