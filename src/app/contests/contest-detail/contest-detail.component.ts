@@ -14,7 +14,7 @@ export class ContestDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.contest = this.route.snapshot.data['contest'];
+    this.contest = this.route.snapshot.data.contest;
   }
 
 }

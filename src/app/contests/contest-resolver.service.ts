@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Apollo } from 'apollo-angular';
+import { ApolloQueryResult } from 'apollo-client';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/operators/map';
 
 import * as Query from './contest-queries';
 import { Contest } from './contest';
-
-interface ContestQueryResponse {
-  getContest: Contest;
-}
 
 @Injectable()
 export class ContestResolver implements Resolve<Contest> {
@@ -17,8 +15,17 @@ export class ContestResolver implements Resolve<Contest> {
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Contest> {
     const contestId = route.params['id'];
+    const contest = this.apollo.query<Contest>({
+      query: Query.getContest,
+      variables: {
+        id: contestId
+      }
+    })
+    .map(({data}) => {
+      return data['getContest'];
+    });
 
-    return null;
+    return contest;
   }
 
 }

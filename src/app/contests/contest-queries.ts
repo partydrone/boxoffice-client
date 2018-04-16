@@ -12,7 +12,7 @@ export const listContests = gql`
 `;
 
 export const getContest = gql`
-  query getContest($id: String!) {
+  query getContest($id: ID!) {
     getContest(id: $id) {
       id
       title

@@ -5,7 +5,6 @@ import 'rxjs/add/operator/map';
 
 import * as Query from '../contest-queries';
 import { Contest } from '../contest';
-import { LoadingSpinnerComponent } from '../../shared/loading-spinner.component';
 
 @Component({
   selector:    'bo-contest-list',
