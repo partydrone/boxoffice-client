@@ -22,7 +22,7 @@ export class ContestListComponent implements OnInit {
     .watchQuery<Contest[]>({ query: Query.listContests })
     .valueChanges
     .subscribe(({data, loading}) => {
-      this.loading = loading;
+      this.loading  = loading;
       this.contests = data['listContests']['items'];
     });
   }
