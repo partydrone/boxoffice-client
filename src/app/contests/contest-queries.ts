@@ -21,3 +21,12 @@ export const getContest = gql`
     }
   }
 `;
+
+export const deleteContest = gql`
+  mutation deleteContest($id: ID!) {
+    deleteContest(id: $id) {
+      id
+      title
+    }
+  }
+`;

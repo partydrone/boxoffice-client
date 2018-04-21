@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Apollo } from 'apollo-angular';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map';
 
-import * as Query from '../contest-queries';
+import { ContestService } from '../contest.service';
 import { Contest } from '../contest';
 
 @Component({
@@ -13,18 +11,20 @@ import { Contest } from '../contest';
 })
 export class ContestListComponent implements OnInit {
   loading: boolean;
-  contests: Contest[];
+  contests: Observable<Contest[]>;
 
-  constructor(private apollo: Apollo) { }
+  constructor(private contestService: ContestService) { }
 
   ngOnInit() {
-    this.apollo
-    .watchQuery<Contest[]>({ query: Query.listContests })
-    .valueChanges
-    .subscribe(({data, loading}) => {
-      this.loading  = loading;
-      this.contests = data['listContests']['items'];
-    });
+    this.contests = this.getContests();
+  }
+
+  getContests(): Observable<Contest[]> {
+    return this.contestService.getContests();
+  }
+
+  deleteContest(id: string): Observable<Contest> {
+    return this.contestService.deleteContest(id);
   }
 
 }

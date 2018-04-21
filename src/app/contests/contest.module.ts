@@ -6,6 +6,7 @@ import { ContestListComponent } from './contest-list/contest-list.component';
 import { ContestListItemComponent } from './contest-list/contest-list-item.component';
 import { ContestDetailComponent } from './contest-detail/contest-detail.component';
 import { ContestResolver } from './contest-resolver.service';
+import { ContestService } from './contest.service';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { ContestResolver } from './contest-resolver.service';
     ContestDetailComponent
   ],
   providers: [
-    ContestResolver
+    ContestResolver,
+    ContestService
   ]
 })
 export class ContestModule { }

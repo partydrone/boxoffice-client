@@ -2,4 +2,14 @@
   <bo-loading-spinner></bo-loading-spinner>
   <small>{{ contest.id }}</small>
   <h2><a [routerLink]="['/contests', contest.id]">{{ contest.title }}</a></h2>
+  <p>
+    <button>
+      <i class="fal fa-edit"></i>
+      Edit
+    </button>
+    <button (click)="deleteContest(contest.id)">
+      <i class="fal fa-trash"></i>
+      Delete
+    </button>
+  </p>
 </div>
