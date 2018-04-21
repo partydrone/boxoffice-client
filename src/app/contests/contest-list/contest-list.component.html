@@ -1,2 +1,2 @@
 <h1>Contest List</h1>
-<bo-contest-list-item *ngFor="let contest of contests | async" [contest]="contest"></bo-contest-list-item>
+<bo-contest-list-item *ngFor="let contest of contests | async" [contest]="contest" (deleteClicked)="deleteContest($event)"></bo-contest-list-item>

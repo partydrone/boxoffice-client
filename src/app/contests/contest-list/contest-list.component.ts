@@ -24,6 +24,7 @@ export class ContestListComponent implements OnInit {
   }
 
   deleteContest(id: string): Observable<Contest> {
+    console.log(`Deleting contest ${id}.`);
     return this.contestService.deleteContest(id);
   }
 

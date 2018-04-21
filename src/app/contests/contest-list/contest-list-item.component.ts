@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Contest } from '../contest';
 
@@ -8,12 +7,15 @@ import { Contest } from '../contest';
   templateUrl: './contest-list-item.component.html',
   styleUrls: ['./contest-list-item.component.scss']
 })
-export class ContestListItemComponent implements OnInit {
+export class ContestListItemComponent {
   @Input() contest: Contest;
+  @Output() deleteClicked: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
 
-  ngOnInit() {
+  deleteContest(id: string): void {
+    console.log(`Clicked delete button for contest ${id}.`);
+    this.deleteClicked.emit(id);
   }
 
 }
