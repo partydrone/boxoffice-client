@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/timer';
+import 'rxjs/add/operator/mergeMap';
 import * as auth0 from 'auth0-js';
 
 @Injectable()
@@ -12,6 +16,7 @@ export class AuthService {
     redirectUri: 'http://localhost:4200/callback',
     scope: 'openid profile'
   });
+  refreshSubscription: any;
   userProfile: any;
 
   constructor(public router: Router) { }
@@ -39,10 +44,44 @@ export class AuthService {
     return new Date().getTime() < expiresAt;
   }
 
+  public scheduleRenewal() {
+    if (!this.isAuthenticated()) { return; }
+    this.unscheduleRenewal();
+
+    const expiresAt = JSON.parse(window.localStorage.getItem('expires_at'));
+
+    const expiresIn$ = Observable.of(expiresAt).mergeMap(expires => {
+      const now = Date.now();
+      return Observable.timer(Math.max(1, expires - now));
+    });
+
+    this.refreshSubscription = expiresIn$.subscribe(() => {
+      this.renewToken();
+      this.scheduleRenewal();
+    });
+  }
+
+  public unscheduleRenewal() {
+    if (this.refreshSubscription) {
+      this.refreshSubscription.unsubscribe();
+    }
+  }
+
+  public renewToken() {
+    this.auth0.checkSession({}, (error, result) => {
+      if (error) {
+        console.log(error);
+      } else {
+        this.setSession(result);
+      }
+    });
+  }
+
   public logout(): void {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    this.unscheduleRenewal();
     this.router.navigate(['/']);
   }
 
@@ -63,9 +102,12 @@ export class AuthService {
 
   private setSession(authResult): void {
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
+
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
+
+    this.scheduleRenewal();
   }
 
 }
