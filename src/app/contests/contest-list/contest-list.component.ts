@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 import { ContestService } from '../contest.service';
@@ -13,7 +14,7 @@ export class ContestListComponent implements OnInit {
   loading: boolean;
   contests: Observable<Contest[]>;
 
-  constructor(private contestService: ContestService) { }
+  constructor(private contestService: ContestService, private router: Router) { }
 
   ngOnInit() {
     this.contests = this.getContests();
@@ -23,9 +24,11 @@ export class ContestListComponent implements OnInit {
     return this.contestService.getContests();
   }
 
-  deleteContest(id: string): Observable<Contest> {
+  deleteContest(id: string) {
     console.log(`Deleting contest ${id}.`);
-    return this.contestService.deleteContest(id);
+    this.contestService.deleteContest(id)
+    .subscribe(() => this.router.navigate(['/contests']),
+    (error) => console.log(error));
   }
 
 }

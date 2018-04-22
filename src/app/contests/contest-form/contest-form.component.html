@@ -1,0 +1,32 @@
+<form (ngSubmit)="save()" [formGroup]="contestForm">
+  <label>
+    Title
+    <input type="text" id="contest-title-id" placeholder="Contest title (required)" formControlName="title" />
+  </label>
+
+  <div formGroupName="dateGroup">
+    <label>
+      Starts
+      <input type="date" id="contest-started-on-id" formControlName="startedOn" />
+    </label>
+
+    <label>
+      Ends
+      <input type="date" id="contest-ended-on-id" formControlName="endedOn" />
+    </label>
+  </div>
+
+  <button type="submit" [disabled]="!contestForm.valid">Save Contest</button>
+</form>
+
+<div>
+<pre>
+---
+
+Dirty:   {{ contestForm.dirty }}
+Touched: {{ contestForm.touched }}
+Valid:   {{ contestForm.valid }}
+Value:
+{{ contestForm.value | json }}
+</pre>
+</div>

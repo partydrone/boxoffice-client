@@ -1,2 +1,9 @@
-<h1>Contest List</h1>
+<h1>
+  Contest List
+  <small>
+    <a routerLink="/contests/new">
+      <i class="fal fa-plus-circle"></i>
+    </a>
+  </small>
+</h1>
 <bo-contest-list-item *ngFor="let contest of contests | async" [contest]="contest" (deleteClicked)="deleteContest($event)"></bo-contest-list-item>

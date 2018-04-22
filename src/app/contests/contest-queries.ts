@@ -22,9 +22,31 @@ export const getContest = gql`
   }
 `;
 
+export const createContest = gql`
+  mutation createContest($title: String!, $startedOn: String!, $endedOn: String!) {
+    createContest(input: {title: $title, startedOn: $startedOn, endedOn: $endedOn}) {
+      id
+      title
+      startedOn
+      endedOn
+    }
+  }
+`;
+
+export const updateContest = gql`
+  mutation updateContest($id: ID!, $title: String, $startedOn: String, $endedOn: String) {
+    updateContest(input: {id: $id, title: $title, startedOn: $startedOn, endedOn: $endedOn}) {
+      id
+      title
+      startedOn
+      endedOn
+    }
+  }
+`;
+
 export const deleteContest = gql`
   mutation deleteContest($id: ID!) {
-    deleteContest(id: $id) {
+    deleteContest(input: {id: $id}) {
       id
       title
     }

@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { Contest } from '../contest';
 
@@ -11,10 +12,13 @@ export class ContestListItemComponent {
   @Input() contest: Contest;
   @Output() deleteClicked: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
-  deleteContest(id: string): void {
-    console.log(`Clicked delete button for contest ${id}.`);
+  editContest(id: string): void {
+    this.router.navigate(['/contests', id, 'edit']);
+  }
+
+  deleteContest(id: string) {
     this.deleteClicked.emit(id);
   }
 

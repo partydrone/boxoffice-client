@@ -32,9 +32,39 @@ export class ContestService {
     });
   }
 
-  // createContest
+  createContest(contest): Observable<Contest> {
+    return this.apollo.mutate<Contest>({
+      mutation: Query.createContest,
+      variables: {
+        title: contest.title,
+        startedOn: contest.startedOn,
+        endedOn: contest.endedOn
+      }
+    })
+    .map(({data}) => {
+      return data['createContest'];
+    }, (error) => {
+      console.log('Error creating contest:', error);
+    });
+  }
 
-  // updateContest
+  updateContest(contest): Observable<Contest> {
+    console.log('ContestService.updateContest() called…', contest);
+    return this.apollo.mutate<Contest>({
+      mutation: Query.updateContest,
+      variables: {
+        id: contest.id,
+        title: contest.title,
+        startedOn: contest.startedOn,
+        endedOn: contest.endedOn
+      }
+    })
+    .map(({data}) => {
+      return data['updateContest'];
+    }, (error) => {
+      console.log('Error updating contest:', error);
+    });
+  }
 
   deleteContest(id: string): Observable<Contest> {
     return this.apollo.mutate<Contest>({
@@ -45,6 +75,8 @@ export class ContestService {
     })
     .map(({data}) => {
       return data['deleteContest'];
+    }, (error) => {
+      console.log('Error deleting contest:', error);
     });
   }
 
