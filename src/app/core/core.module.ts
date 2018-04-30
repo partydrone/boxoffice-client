@@ -4,17 +4,32 @@ import { RouterModule } from '@angular/router';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
 import { AuthModule } from '../auth/auth.module';
+import { GraphQLModule } from '../graphql/graphql.module';
+import { MaterialModule } from '../core/material.module';
+
+import { LoggerService } from './logger.service';
 import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
-    AuthModule
+    AuthModule,
+    GraphQLModule,
+    MaterialModule
   ],
-  exports: [NavComponent],
-  declarations: [NavComponent],
-  providers: []
+  exports: [
+    AuthModule,
+    GraphQLModule,
+    MaterialModule,
+    NavComponent
+  ],
+  declarations: [
+    NavComponent
+  ],
+  providers: [
+    LoggerService
+  ]
 })
 export class CoreModule {
   constructor( @Optional() @SkipSelf() parentModule: CoreModule) {

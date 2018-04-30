@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { MaterialModule } from '../core/material.module';
 import { SharedModule } from '../shared/shared.module';
+
 import { ContestRoutingModule } from './contest-routing.module';
 import { ContestListComponent } from './contest-list/contest-list.component';
 import { ContestListItemComponent } from './contest-list/contest-list-item.component';
@@ -14,6 +16,7 @@ import { ContestFormComponent } from './contest-form/contest-form.component';
 
 @NgModule({
   imports: [
+    MaterialModule,
     SharedModule,
     ReactiveFormsModule,
     ContestRoutingModule

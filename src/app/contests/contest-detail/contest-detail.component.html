@@ -4,3 +4,7 @@
   <i class="fal fa-calendar"></i>
   {{ contest?.startedOn }} – {{ contest?.endedOn }}
 </div>
+
+<div>
+  <a mat-button [routerLink]="['/contests', contest?.id, 'edit']">Edit</a>
+</div>

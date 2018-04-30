@@ -26,4 +26,15 @@ export class ContestEditComponent implements OnInit {
     );
   }
 
+  cancelEdit(contest: Contest): void {
+    this.router.navigate(['/contests', contest.id]);
+  }
+
+  deleteContest(contest: Contest): void {
+    this.contestService.deleteContest(contest.id).subscribe(
+      ()           => this.router.navigate(['/contests']),
+      (error: any) => this.errorMessage = <any>error
+    );
+  }
+
 }

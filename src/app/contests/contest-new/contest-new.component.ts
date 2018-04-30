@@ -25,4 +25,8 @@ export class ContestNewComponent implements OnInit {
     );
   }
 
+  cancelEdit(): void {
+    this.router.navigate(['/contests']);
+  }
+
 }
