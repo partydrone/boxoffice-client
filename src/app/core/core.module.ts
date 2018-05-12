@@ -3,14 +3,17 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { throwIfAlreadyLoaded } from './module-import-guard';
+import { MaterialModule } from './material.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    MaterialModule
   ],
   exports: [],
-  declarations: []
+  declarations: [],
+  providers: []
 })
 export class CoreModule {
   constructor( @Optional() @SkipSelf() parentModule: CoreModule ) {
