@@ -1,9 +1,0 @@
-<h1>Contests</h1>
-
-<mat-nav-list>
-  <bo-contest-list-item *ngFor="let contest of contests | async" [contest]="contest" (deleteClicked)="deleteContest($event)"></bo-contest-list-item>
-</mat-nav-list>
-
-<a mat-fab color="accent" routerLink="/contests/new">
-    <i class="far fa-plus"></i>
-</a>

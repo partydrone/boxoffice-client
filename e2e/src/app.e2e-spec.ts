@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('boxoffice App', () => {
+describe('workspace-project App', () => {
   let page: AppPage;
 
   beforeEach(() => {
@@ -9,6 +9,6 @@ describe('boxoffice App', () => {
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to bo!');
+    expect(page.getParagraphText()).toEqual('Welcome to app!');
   });
 });
