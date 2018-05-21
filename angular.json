@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "boxoffice-client"
+  "defaultProject": "boxoffice-client",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
