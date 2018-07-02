@@ -14,8 +14,10 @@
     ],
     "lib": [
       "es2017",
-      "esnext.asynciterable",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@app/*": ["src/app/*"]
+    }
   }
 }
