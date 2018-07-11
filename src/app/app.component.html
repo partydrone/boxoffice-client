@@ -1,18 +1,19 @@
+<div class="wrapper">
+  <mat-toolbar color="primary" class="site-header">
+    <button mat-icon-button (click)="sidenav.toggle()">
+      <fa-icon [icon]="faBars"></fa-icon>
+    </button>
 
-<mat-toolbar color="primary" class="mat-elevation-z3">
-  <button mat-icon-button (click)="sidenav.toggle()">
-    <fa-icon [icon]="faBars"></fa-icon>
-  </button>
+    <h1>Box Office Game</h1>
+  </mat-toolbar>
 
-  <h1>Box Office Game</h1>
-</mat-toolbar>
+  <mat-sidenav-container class="site-content">
+    <mat-sidenav #sidenav>
+      <pd-nav></pd-nav>
+    </mat-sidenav>
 
-<mat-sidenav-container>
-  <mat-sidenav #sidenav>
-    <pd-nav></pd-nav>
-  </mat-sidenav>
-
-  <mat-sidenav-content>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

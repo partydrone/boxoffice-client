@@ -1,5 +1,6 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { throwIfAlreadyLoaded } from '@app/core/module-import-guard';
@@ -11,6 +12,7 @@ import { NavComponent } from '@app/core/nav/nav.component';
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     FontAwesomeModule,
     GraphQLModule,
     MaterialModule

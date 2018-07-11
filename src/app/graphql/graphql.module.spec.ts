@@ -1,4 +1,4 @@
-import { GraphQLModule } from './graphql.module';
+import { GraphQLModule } from '@app/graphql/graphql.module';
 
 describe('GraphqlModule', () => {
   let graphqlModule: GraphQLModule;
